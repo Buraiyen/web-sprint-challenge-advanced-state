@@ -7,7 +7,6 @@ const Quiz = (props) => {
   }, []);
   const { quizData, isFetching, error } = props.quiz;
   const { selectedAnswer } = props;
-  console.log(selectedAnswer);
   return (
     <div id='wrapper'>
       {

@@ -5,6 +5,7 @@ import {
   FETCH_QUIZ_SUCCESS,
   MOVE_CLOCKWISE,
   MOVE_COUNTERCLOCKWISE,
+  SET_INFO_MESSAGE,
   SET_SELECTED_ANSWER,
 } from './action-types';
 
@@ -52,7 +53,9 @@ export function selectAnswer(answerIndex) {
   };
 }
 
-export function setMessage() {}
+export const setMessage = (messageData) => (dispatch) => {
+  dispatch({ type: SET_INFO_MESSAGE, payload: messageData });
+};
 
 export function setQuiz() {}
 
@@ -90,10 +93,10 @@ export const postAnswer = (quizData, selectedAnswer) => (dispatch) => {
   axios
     .post(URL, postData)
     .then((res) => {
-      console.log(res.data);
+      dispatch(setMessage(res.data));
     })
     .catch((err) => {
-      console.log(err);
+      dispatch(setMessage(err));
     });
   // dispatch({ type: FETCH_QUIZ_START });
   // axios

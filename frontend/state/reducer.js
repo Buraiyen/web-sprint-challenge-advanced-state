@@ -7,6 +7,7 @@ import {
   SET_SELECTED_ANSWER,
   MOVE_CLOCKWISE,
   MOVE_COUNTERCLOCKWISE,
+  SET_INFO_MESSAGE,
 } from './action-types';
 
 const initialWheelState = [true, false, false, false, false, false];
@@ -72,9 +73,17 @@ function selectedAnswer(state = initialSelectedAnswerState, action) {
   }
 }
 
-const initialMessageState = '';
+const initialMessageState = {
+  message: 'Welcome!',
+};
 function infoMessage(state = initialMessageState, action) {
-  return state;
+  console.log(action.payload);
+  switch (action.type) {
+    case SET_INFO_MESSAGE:
+      return action.payload;
+    default:
+      return state;
+  }
 }
 
 const initialFormState = {

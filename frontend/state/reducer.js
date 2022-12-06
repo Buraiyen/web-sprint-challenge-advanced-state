@@ -1,33 +1,71 @@
 // ❗ You don't need to add extra reducers to achieve MVP
-import { combineReducers } from 'redux'
+import { combineReducers } from 'redux';
+import {
+  FETCH_QUIZ_START,
+  FETCH_QUIZ_SUCCESS,
+  FETCH_QUIZ_FAIL,
+} from './action-types';
 
-const initialWheelState = 0
+const initialWheelState = 0;
 function wheel(state = initialWheelState, action) {
-  return state
+  return state;
 }
 
-const initialQuizState = null
+const initialQuizState = {
+  quizData: {},
+  isFetching: false,
+  error: '',
+};
 function quiz(state = initialQuizState, action) {
-  return state
+  switch (action.type) {
+    case FETCH_QUIZ_START:
+      return {
+        ...state,
+        isFetching: true,
+      };
+    case FETCH_QUIZ_SUCCESS:
+      return {
+        ...state,
+        quizData: action.payload,
+        isFetching: false,
+        error: '',
+      };
+
+    case FETCH_QUIZ_FAIL:
+      return {
+        ...state,
+        isFetching: false,
+        error: action.payload,
+      };
+
+    default:
+      return state;
+  }
 }
 
-const initialSelectedAnswerState = null
+const initialSelectedAnswerState = null;
 function selectedAnswer(state = initialSelectedAnswerState, action) {
-  return state
+  return state;
 }
 
-const initialMessageState = ''
+const initialMessageState = '';
 function infoMessage(state = initialMessageState, action) {
-  return state
+  return state;
 }
 
 const initialFormState = {
   newQuestion: '',
   newTrueAnswer: '',
   newFalseAnswer: '',
-}
+};
 function form(state = initialFormState, action) {
-  return state
+  return state;
 }
 
-export default combineReducers({ wheel, quiz, selectedAnswer, infoMessage, form })
+export default combineReducers({
+  wheel,
+  quiz,
+  selectedAnswer,
+  infoMessage,
+  form,
+});

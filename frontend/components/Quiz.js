@@ -11,7 +11,7 @@ const Quiz = (props) => {
     <div id="wrapper">
       {
         // quiz already in state? Let's use that, otherwise render "Loading next quiz..."
-        quizData ? (
+        !isFetching ? (
           <>
             <h2>{quizData.question}</h2>
 

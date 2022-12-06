@@ -4,6 +4,7 @@ import {
   FETCH_QUIZ_START,
   FETCH_QUIZ_SUCCESS,
   FETCH_QUIZ_FAIL,
+  SET_SELECTED_ANSWER,
 } from './action-types';
 
 const initialWheelState = 0;
@@ -50,9 +51,14 @@ function quiz(state = initialQuizState, action) {
   }
 }
 
-const initialSelectedAnswerState = null;
+const initialSelectedAnswerState = [true, false];
 function selectedAnswer(state = initialSelectedAnswerState, action) {
-  return state;
+  switch (action.type) {
+    case SET_SELECTED_ANSWER:
+      return state;
+    default:
+      return state;
+  }
 }
 
 const initialMessageState = '';

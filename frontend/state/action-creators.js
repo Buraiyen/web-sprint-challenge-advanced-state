@@ -5,6 +5,7 @@ import {
   FETCH_QUIZ_SUCCESS,
   MOVE_CLOCKWISE,
   MOVE_COUNTERCLOCKWISE,
+  RESET_FORM,
   SET_INFO_MESSAGE,
   SET_SELECTED_ANSWER,
 } from './action-types';
@@ -61,7 +62,12 @@ export function setQuiz() {}
 
 export function inputChange() {}
 
-export function resetForm() {}
+export function resetForm() {
+  return {
+    type: RESET_FORM,
+    payload: { newQuestion: '', newTrueAnswer: '', newFalseAnswer: '' },
+  };
+}
 
 // ❗ Async action creators
 export const fetchQuiz = () => (dispatch) => {

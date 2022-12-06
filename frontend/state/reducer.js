@@ -8,6 +8,7 @@ import {
   MOVE_CLOCKWISE,
   MOVE_COUNTERCLOCKWISE,
   SET_INFO_MESSAGE,
+  RESET_FORM,
 } from './action-types';
 
 const initialWheelState = [true, false, false, false, false, false];
@@ -91,9 +92,14 @@ const initialFormState = {
   newTrueAnswer: '',
   newFalseAnswer: '',
 };
-function form(state = initialFormState, action) {
-  return state;
-}
+const form = (state = initialFormState, action) => {
+  switch (action.type) {
+    case RESET_FORM:
+      return action.payload;
+    default:
+      return state;
+  }
+};
 
 export default combineReducers({
   wheel,

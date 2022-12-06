@@ -26,11 +26,11 @@ function wheel(state = initialWheelState, action) {
 
 const initialQuizState = {
   quizData: {
-    quiz_id: '',
-    question: '',
+    quiz_id: 'wbxqh',
+    question: 'What is a closure?',
     answers: [
-      { answer_id: '', text: '' },
-      { answer_id: '', text: '' },
+      { answer_id: 'sphul', text: 'A function plus its bindings' },
+      { answer_id: 'otkav', text: 'Clearly some kind of elephant' },
     ],
   },
   isFetching: false,

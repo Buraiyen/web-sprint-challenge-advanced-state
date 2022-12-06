@@ -10,33 +10,35 @@ import {
 // ❗ You don't need to add extra action creators to achieve MVP
 export function moveClockwise(wheel) {
   const activePosition = wheel.indexOf(true);
-  wheel[activePosition] = false;
+  const wheelCopy = [...wheel];
+  wheelCopy[activePosition] = false;
 
   if (activePosition === wheel.length - 1) {
-    wheel[0] = true;
+    wheelCopy[0] = true;
   } else {
-    wheel[activePosition + 1] = true;
+    wheelCopy[activePosition + 1] = true;
   }
 
   return {
     type: MOVE_CLOCKWISE,
-    payload: wheel,
+    payload: wheelCopy,
   };
 }
 
-export function moveCounterClockwise() {
+export function moveCounterClockwise(wheel) {
   const activePosition = wheel.indexOf(true);
-  wheel[activePosition] = false;
+  const wheelCopy = [...wheel];
+  wheelCopy[activePosition] = false;
 
   if (activePosition === 0) {
-    wheel[wheel.length - 1] = true;
+    wheelCopy[wheel.length - 1] = true;
   } else {
-    wheel[activePosition - 1] = true;
+    wheelCopy[activePosition - 1] = true;
   }
 
   return {
     type: MOVE_COUNTERCLOCKWISE,
-    payload: wheel,
+    payload: wheelCopy,
   };
 }
 

@@ -77,14 +77,22 @@ export const fetchQuiz = () => (dispatch) => {
     });
 };
 
-export function postAnswer() {
-  return function (dispatch) {
-    // On successful POST:
-    // - Dispatch an action to reset the selected answer state
-    // - Dispatch an action to set the server message to state
-    // - Dispatch the fetching of the next quiz
-  };
-}
+export const postAnswer = () => (dispatch) => {
+  // On successful POST:
+  // - Dispatch an action to reset the selected answer state
+  // - Dispatch an action to set the server message to state
+  // - Dispatch the fetching of the next quiz
+  dispatch({ type: FETCH_QUIZ_START });
+  axios
+    .get('http://localhost:9000/api/quiz/next')
+    .then((res) => {
+      dispatch({ type: FETCH_QUIZ_SUCCESS, payload: res.data });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({ type: FETCH_QUIZ_FAIL, payload: err });
+    });
+};
 export function postQuiz() {
   return function (dispatch) {
     // On successful POST:

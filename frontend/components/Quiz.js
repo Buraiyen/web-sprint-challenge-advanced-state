@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { fetchQuiz, selectAnswer } from '../state/action-creators';
+import { fetchQuiz, selectAnswer, postAnswer } from '../state/action-creators';
 const Quiz = (props) => {
   useEffect(() => {
     props.fetchQuiz();
@@ -34,7 +34,8 @@ const Quiz = (props) => {
 
             <button
               id='submitAnswerBtn'
-              disabled={!(selectedAnswer[0] || selectAnswer[1])}
+              disabled={!(selectedAnswer[0] || selectedAnswer[1])}
+              onClick={() => props.postAnswer()}
             >
               Submit answer
             </button>
@@ -53,4 +54,8 @@ const mapStateToProps = (state) => {
     selectedAnswer: state.selectedAnswer,
   };
 };
-export default connect(mapStateToProps, { fetchQuiz, selectAnswer })(Quiz);
+export default connect(mapStateToProps, {
+  fetchQuiz,
+  selectAnswer,
+  postAnswer,
+})(Quiz);

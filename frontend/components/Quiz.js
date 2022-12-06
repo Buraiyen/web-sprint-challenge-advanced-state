@@ -19,18 +19,25 @@ const Quiz = (props) => {
             <div id='quizAnswers'>
               <div className={selectedAnswer[0] ? 'answer selected' : 'answer'}>
                 {quizData.answers[0].text}
-                <button onClick={() => props.selectAnswer(props.answers)}>
+                <button onClick={() => props.selectAnswer(0)}>
                   {selectedAnswer[0] ? 'SELECTED' : 'Select'}
                 </button>
               </div>
 
               <div className={selectedAnswer[1] ? 'answer selected' : 'answer'}>
                 {quizData.answers[1].text}
-                <button>{selectedAnswer[1] ? 'SELECTED' : 'Select'}</button>
+                <button onClick={() => props.selectAnswer(1)}>
+                  {selectedAnswer[1] ? 'SELECTED' : 'Select'}
+                </button>
               </div>
             </div>
 
-            <button id='submitAnswerBtn'>Submit answer</button>
+            <button
+              id='submitAnswerBtn'
+              disabled={!(selectedAnswer[0] || selectAnswer[1])}
+            >
+              Submit answer
+            </button>
           </>
         ) : (
           'Loading next quiz...'

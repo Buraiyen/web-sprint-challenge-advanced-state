@@ -5,6 +5,7 @@ import {
   FETCH_QUIZ_SUCCESS,
   MOVE_CLOCKWISE,
   MOVE_COUNTERCLOCKWISE,
+  SET_SELECTED_ANSWER,
 } from './action-types';
 
 // ❗ You don't need to add extra action creators to achieve MVP
@@ -42,8 +43,13 @@ export function moveCounterClockwise(wheel) {
   };
 }
 
-export function selectAnswer(answers) {
-  console.log(answers);
+export function selectAnswer(answerIndex) {
+  const answers = [false, false];
+  answers[answerIndex] = true;
+  return {
+    type: SET_SELECTED_ANSWER,
+    payload: answers,
+  };
 }
 
 export function setMessage() {}

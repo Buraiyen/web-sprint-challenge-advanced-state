@@ -77,21 +77,34 @@ export const fetchQuiz = () => (dispatch) => {
     });
 };
 
-export const postAnswer = () => (dispatch) => {
+export const postAnswer = (quizData, selectedAnswer) => (dispatch) => {
   // On successful POST:
   // - Dispatch an action to reset the selected answer state
   // - Dispatch an action to set the server message to state
   // - Dispatch the fetching of the next quiz
-  dispatch({ type: FETCH_QUIZ_START });
+  const selectedIndex = selectedAnswer.indexOf(true);
+  const answerID = quizData.answers[selectedIndex].answer_id;
+  const postData = { quiz_id: quizData.quiz_id, answer_id: answerID };
+  const URL = 'http://localhost:9000/api/quiz/answer';
+
   axios
-    .get('http://localhost:9000/api/quiz/next')
+    .post(URL, postData)
     .then((res) => {
-      dispatch({ type: FETCH_QUIZ_SUCCESS, payload: res.data });
+      console.log(res.data);
     })
     .catch((err) => {
       console.log(err);
-      dispatch({ type: FETCH_QUIZ_FAIL, payload: err });
     });
+  // dispatch({ type: FETCH_QUIZ_START });
+  // axios
+  //   .get('http://localhost:9000/api/quiz/next')
+  //   .then((res) => {
+  //     dispatch({ type: FETCH_QUIZ_SUCCESS, payload: res.data });
+  //   })
+  //   .catch((err) => {
+  //     console.log(err);
+  //     dispatch({ type: FETCH_QUIZ_FAIL, payload: err });
+  //   });
 };
 export function postQuiz() {
   return function (dispatch) {

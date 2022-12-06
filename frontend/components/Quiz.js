@@ -35,7 +35,7 @@ const Quiz = (props) => {
             <button
               id='submitAnswerBtn'
               disabled={!(selectedAnswer[0] || selectedAnswer[1])}
-              onClick={() => props.postAnswer()}
+              onClick={() => props.postAnswer(quizData, selectedAnswer)}
             >
               Submit answer
             </button>

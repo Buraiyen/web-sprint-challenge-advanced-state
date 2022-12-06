@@ -3,12 +3,42 @@ import {
   FETCH_QUIZ_FAIL,
   FETCH_QUIZ_START,
   FETCH_QUIZ_SUCCESS,
+  MOVE_CLOCKWISE,
+  MOVE_COUNTERCLOCKWISE,
 } from './action-types';
 
 // ❗ You don't need to add extra action creators to achieve MVP
-export function moveClockwise() {}
+export function moveClockwise(wheel) {
+  const activePosition = wheel.indexOf(true);
+  wheel[activePosition] = false;
 
-export function moveCounterClockwise() {}
+  if (activePosition === wheel.length - 1) {
+    wheel[0] = true;
+  } else {
+    wheel[activePosition + 1] = true;
+  }
+
+  return {
+    type: MOVE_CLOCKWISE,
+    payload: wheel,
+  };
+}
+
+export function moveCounterClockwise() {
+  const activePosition = wheel.indexOf(true);
+  wheel[activePosition] = false;
+
+  if (activePosition === 0) {
+    wheel[wheel.length - 1] = true;
+  } else {
+    wheel[activePosition - 1] = true;
+  }
+
+  return {
+    type: MOVE_COUNTERCLOCKWISE,
+    payload: wheel,
+  };
+}
 
 export function selectAnswer() {}
 

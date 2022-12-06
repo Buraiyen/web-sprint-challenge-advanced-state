@@ -5,11 +5,22 @@ import {
   FETCH_QUIZ_SUCCESS,
   FETCH_QUIZ_FAIL,
   SET_SELECTED_ANSWER,
+  MOVE_CLOCKWISE,
+  MOVE_COUNTERCLOCKWISE,
 } from './action-types';
 
-const initialWheelState = 0;
+const initialWheelState = [false, false, true, false, false, false];
 function wheel(state = initialWheelState, action) {
-  return state;
+  switch (action.type) {
+    case MOVE_CLOCKWISE:
+      return [...action.payload];
+
+    case MOVE_COUNTERCLOCKWISE:
+      return [...action.payload];
+
+    default:
+      return state;
+  }
 }
 
 const initialQuizState = {

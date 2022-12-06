@@ -12,7 +12,14 @@ function wheel(state = initialWheelState, action) {
 }
 
 const initialQuizState = {
-  quizData: {},
+  quizData: {
+    quiz_id: '',
+    question: '',
+    answers: [
+      { answer_id: '', text: '' },
+      { answer_id: '', text: '' },
+    ],
+  },
   isFetching: false,
   error: '',
 };

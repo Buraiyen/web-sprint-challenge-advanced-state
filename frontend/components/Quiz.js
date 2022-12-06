@@ -5,22 +5,25 @@ const Quiz = (props) => {
   useEffect(() => {
     props.fetchQuiz();
   }, []);
+  const { quizData, isFetching, error } = props.quiz;
+  console.log(quizData.answers);
   return (
     <div id="wrapper">
       {
         // quiz already in state? Let's use that, otherwise render "Loading next quiz..."
-        !props.quiz.isFetching ? (
+        quizData ? (
           <>
-            <h2>{props.quiz.quizData.question}</h2>
+            <h2>{quizData.question}</h2>
 
             <div id="quizAnswers">
+              <div className="answer"></div>
               <div className="answer selected">
-                A function
+                {quizData.answers[0].text}
                 <button>SELECTED</button>
               </div>
 
               <div className="answer">
-                An elephant
+                {quizData.answers[1].text}
                 <button>Select</button>
               </div>
             </div>

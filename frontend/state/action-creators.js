@@ -42,7 +42,9 @@ export function moveCounterClockwise(wheel) {
   };
 }
 
-export function selectAnswer() {}
+export function selectAnswer(answers) {
+  console.log(answers);
+}
 
 export function setMessage() {}
 

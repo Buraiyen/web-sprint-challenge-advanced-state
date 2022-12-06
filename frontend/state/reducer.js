@@ -62,11 +62,11 @@ function quiz(state = initialQuizState, action) {
   }
 }
 
-const initialSelectedAnswerState = [true, false];
+const initialSelectedAnswerState = [false, false];
 function selectedAnswer(state = initialSelectedAnswerState, action) {
   switch (action.type) {
     case SET_SELECTED_ANSWER:
-      return state;
+      return [...action.payload];
     default:
       return state;
   }

@@ -1,34 +1,36 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { fetchQuiz } from '../state/action-creators';
+import { fetchQuiz, selectAnswer } from '../state/action-creators';
 const Quiz = (props) => {
   useEffect(() => {
     props.fetchQuiz();
   }, []);
   const { quizData, isFetching, error } = props.quiz;
-  console.log(quizData.answers);
+  const { selectedAnswer } = props;
+  console.log(selectedAnswer);
   return (
-    <div id="wrapper">
+    <div id='wrapper'>
       {
         // quiz already in state? Let's use that, otherwise render "Loading next quiz..."
         !isFetching ? (
           <>
             <h2>{quizData.question}</h2>
 
-            <div id="quizAnswers">
-              <div className="answer"></div>
-              <div className="answer selected">
+            <div id='quizAnswers'>
+              <div className={selectedAnswer[0] ? 'answer selected' : 'answer'}>
                 {quizData.answers[0].text}
-                <button>SELECTED</button>
+                <button onClick={() => props.selectAnswer(props.answers)}>
+                  {selectedAnswer[0] ? 'SELECTED' : 'Select'}
+                </button>
               </div>
 
-              <div className="answer">
+              <div className={selectedAnswer[1] ? 'answer selected' : 'answer'}>
                 {quizData.answers[1].text}
-                <button>Select</button>
+                <button>{selectedAnswer[1] ? 'SELECTED' : 'Select'}</button>
               </div>
             </div>
 
-            <button id="submitAnswerBtn">Submit answer</button>
+            <button id='submitAnswerBtn'>Submit answer</button>
           </>
         ) : (
           'Loading next quiz...'
@@ -41,6 +43,7 @@ const Quiz = (props) => {
 const mapStateToProps = (state) => {
   return {
     quiz: state.quiz,
+    selectedAnswer: state.selectedAnswer,
   };
 };
-export default connect(mapStateToProps, { fetchQuiz })(Quiz);
+export default connect(mapStateToProps, { fetchQuiz, selectAnswer })(Quiz);

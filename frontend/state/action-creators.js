@@ -95,19 +95,12 @@ export const postAnswer = (quizData, selectedAnswer) => (dispatch) => {
     .then((res) => {
       dispatch(setMessage(res.data));
     })
+    .then(() => {
+      dispatch(fetchQuiz());
+    })
     .catch((err) => {
       dispatch(setMessage(err));
     });
-  // dispatch({ type: FETCH_QUIZ_START });
-  // axios
-  //   .get('http://localhost:9000/api/quiz/next')
-  //   .then((res) => {
-  //     dispatch({ type: FETCH_QUIZ_SUCCESS, payload: res.data });
-  //   })
-  //   .catch((err) => {
-  //     console.log(err);
-  //     dispatch({ type: FETCH_QUIZ_FAIL, payload: err });
-  //   });
 };
 export function postQuiz() {
   return function (dispatch) {

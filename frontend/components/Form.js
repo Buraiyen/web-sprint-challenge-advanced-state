@@ -40,9 +40,9 @@ export function Form(props) {
       <button
         id='submitNewQuizBtn'
         disabled={
-          props.form.newQuestion.length <= 1 ||
-          props.form.newTrueAnswer.length <= 1 ||
-          props.form.newFalseAnswer.length <= 1
+          props.form.newQuestion.trimEnd().length <= 1 ||
+          props.form.newTrueAnswer.trimEnd().length <= 1 ||
+          props.form.newFalseAnswer.trimEnd().length <= 1
         }
       >
         Submit new quiz

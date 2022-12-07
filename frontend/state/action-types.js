@@ -9,3 +9,4 @@ export const RESET_FORM = 'RESET_FORM';
 export const FETCH_QUIZ_START = 'FETCH_QUIZ_START';
 export const FETCH_QUIZ_SUCCESS = 'FETCH_QUIZ_SUCCESS';
 export const FETCH_QUIZ_FAIL = 'FETCH_QUIZ_FAIL';
+export const SET_FORM_DATA = 'SET_FORM_DATA';

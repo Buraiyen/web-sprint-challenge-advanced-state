@@ -9,6 +9,7 @@ import {
   MOVE_COUNTERCLOCKWISE,
   SET_INFO_MESSAGE,
   RESET_FORM,
+  SET_FORM_DATA,
 } from './action-types';
 
 const initialWheelState = [true, false, false, false, false, false];
@@ -96,6 +97,16 @@ const form = (state = initialFormState, action) => {
   switch (action.type) {
     case RESET_FORM:
       return action.payload;
+    case SET_FORM_DATA:
+      const { inputId, inputValue } = action.payload;
+      if (inputId === 'newQuestion') {
+        return { ...state, newQuestion: inputValue };
+      } else if (inputId === 'newTrueAnswer') {
+        return { ...state, newTrueAnswer: inputValue };
+      } else if (inputId === 'newFalseAnswer') {
+        return { ...state, newFalseAnswer: inputValue };
+      }
+
     default:
       return state;
   }

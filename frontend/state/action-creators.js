@@ -6,6 +6,7 @@ import {
   MOVE_CLOCKWISE,
   MOVE_COUNTERCLOCKWISE,
   RESET_FORM,
+  SET_FORM_DATA,
   SET_INFO_MESSAGE,
   SET_SELECTED_ANSWER,
 } from './action-types';
@@ -60,7 +61,12 @@ export const setMessage = (messageData) => (dispatch) => {
 
 export function setQuiz() {}
 
-export function inputChange() {}
+export function inputChange(inputId, inputValue) {
+  return {
+    type: SET_FORM_DATA,
+    payload: { inputId, inputValue },
+  };
+}
 
 export function resetForm() {
   return {

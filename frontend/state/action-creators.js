@@ -118,6 +118,25 @@ export const postQuiz = (formData) => (dispatch) => {
   // On successful POST:
   // - Dispatch the correct message to the the appropriate state
   // - Dispatch the resetting of the form
-  console.log(formData);
+  const URL = 'http://localhost:9000/api/quiz/new';
+  const postData = {
+    question_text: formData.newQuestion,
+    true_answer_text: formData.newTrueAnswer,
+    false_answer_text: formData.newFalseAnswer,
+  };
+  axios
+    .post(URL, postData)
+    .then((res) => {
+      console.log(res.data);
+      // dispatch(resetForm());
+      const message = `Congrats: "${res.data.question}" is a great question!`;
+      dispatch(setMessage({ message }));
+    })
+    .then(() => {
+      dispatch(resetForm());
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 };
 // ❗ On promise rejections, use log statements or breakpoints, and put an appropriate error message in state

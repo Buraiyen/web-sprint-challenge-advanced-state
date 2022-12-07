@@ -79,6 +79,7 @@ const initialMessageState = {
   message: 'Welcome!',
 };
 function infoMessage(state = initialMessageState, action) {
+  console.log(`in the reducer ${action.payload}`);
   switch (action.type) {
     case SET_INFO_MESSAGE:
       return action.payload;

@@ -34,7 +34,16 @@ export function Form(props) {
         id="newFalseAnswer"
         placeholder="Enter false answer"
       />
-      <button id="submitNewQuizBtn">Submit new quiz</button>
+      <button
+        id="submitNewQuizBtn"
+        disabled={
+          !props.form.newQuestion.length ||
+          !props.form.newTrueAnswer.length ||
+          !props.form.newFalseAnswer.length
+        }
+      >
+        Submit new quiz
+      </button>
     </form>
   );
 }

@@ -101,7 +101,7 @@ export const postAnswer = (quizData, selectedAnswer) => (dispatch) => {
   const answerID = quizData.answers[selectedIndex].answer_id;
   const postData = { quiz_id: quizData.quiz_id, answer_id: answerID };
   const URL = 'http://localhost:9000/api/quiz/answer';
-
+  console.warn(postData);
   axios
     .post(URL, postData)
     .then((res) => {
@@ -112,6 +112,7 @@ export const postAnswer = (quizData, selectedAnswer) => (dispatch) => {
     })
     .catch((err) => {
       dispatch(setMessage(err));
+      dispatch(fetchQuiz());
     });
 };
 export const postQuiz = (formData) => (dispatch) => {

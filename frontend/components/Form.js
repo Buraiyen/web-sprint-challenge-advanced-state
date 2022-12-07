@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { inputChange } from '../state/action-creators';
+import { inputChange, postQuiz } from '../state/action-creators';
 
 export function Form(props) {
   const inputChangeHandler = (event) => {
@@ -8,10 +8,13 @@ export function Form(props) {
     props.inputChange(id, value);
   };
 
-  const onSubmit = (evt) => {};
+  const submitHandler = (event) => {
+    event.preventDefault();
+    props.postQuiz(props.form);
+  };
 
   return (
-    <form id="form" onSubmit={onSubmit}>
+    <form id="form" onSubmit={submitHandler}>
       <h2>Create New Quiz</h2>
       <input
         maxLength={50}
@@ -42,4 +45,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { inputChange })(Form);
+export default connect(mapStateToProps, { inputChange, postQuiz })(Form);

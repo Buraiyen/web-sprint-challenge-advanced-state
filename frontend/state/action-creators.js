@@ -114,11 +114,10 @@ export const postAnswer = (quizData, selectedAnswer) => (dispatch) => {
       dispatch(setMessage(err));
     });
 };
-export function postQuiz() {
-  return function (dispatch) {
-    // On successful POST:
-    // - Dispatch the correct message to the the appropriate state
-    // - Dispatch the resetting of the form
-  };
-}
+export const postQuiz = (formData) => (dispatch) => {
+  // On successful POST:
+  // - Dispatch the correct message to the the appropriate state
+  // - Dispatch the resetting of the form
+  console.log(formData);
+};
 // ❗ On promise rejections, use log statements or breakpoints, and put an appropriate error message in state

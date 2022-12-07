@@ -21,18 +21,21 @@ export function Form(props) {
         onChange={inputChangeHandler}
         id='newQuestion'
         placeholder='Enter question'
+        value={props.form.newQuestion}
       />
       <input
         maxLength={50}
         onChange={inputChangeHandler}
         id='newTrueAnswer'
         placeholder='Enter true answer'
+        value={props.form.newTrueAnswer}
       />
       <input
         maxLength={50}
         onChange={inputChangeHandler}
         id='newFalseAnswer'
         placeholder='Enter false answer'
+        value={props.form.newFalseAnswer}
       />
       <button
         id='submitNewQuizBtn'

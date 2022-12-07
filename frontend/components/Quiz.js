@@ -4,15 +4,22 @@ import { fetchQuiz, selectAnswer, postAnswer } from '../state/action-creators';
 const Quiz = (props) => {
   const { quizData, isFetching, error } = props.quiz;
   const { selectedAnswer } = props;
+  useEffect(() => {
+    const { quizData } = props.quiz;
+    console.log(!quizData.quiz_id.length);
+    if (!quizData.quiz_id.length) {
+      props.fetchQuiz();
+    }
+  }, []);
   return (
-    <div id="wrapper">
+    <div id='wrapper'>
       {
         // quiz already in state? Let's use that, otherwise render "Loading next quiz..."
         !isFetching ? (
           <>
             <h2>{quizData.question}</h2>
 
-            <div id="quizAnswers">
+            <div id='quizAnswers'>
               <div className={selectedAnswer[0] ? 'answer selected' : 'answer'}>
                 {quizData.answers[0].text}
                 <button onClick={() => props.selectAnswer(0)}>
@@ -29,7 +36,7 @@ const Quiz = (props) => {
             </div>
 
             <button
-              id="submitAnswerBtn"
+              id='submitAnswerBtn'
               disabled={!(selectedAnswer[0] || selectedAnswer[1])}
               onClick={() => props.postAnswer(quizData, selectedAnswer)}
             >

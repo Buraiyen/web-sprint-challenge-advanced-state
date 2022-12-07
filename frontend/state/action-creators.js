@@ -121,9 +121,9 @@ export const postQuiz = (formData) => (dispatch) => {
   // - Dispatch the resetting of the form
   const URL = 'http://localhost:9000/api/quiz/new';
   const postData = {
-    question_text: formData.newQuestion,
-    true_answer_text: formData.newTrueAnswer,
-    false_answer_text: formData.newFalseAnswer,
+    question_text: formData.newQuestion.trim(),
+    true_answer_text: formData.newTrueAnswer.trim(),
+    false_answer_text: formData.newFalseAnswer.trim(),
   };
   axios
     .post(URL, postData)

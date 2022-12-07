@@ -5,7 +5,7 @@ import { inputChange, postQuiz } from '../state/action-creators';
 export function Form(props) {
   const inputChangeHandler = (event) => {
     const { id, value } = event.target;
-    props.inputChange(id, value.trim());
+    props.inputChange(id, value);
   };
 
   const submitHandler = (event) => {
@@ -40,9 +40,9 @@ export function Form(props) {
       <button
         id='submitNewQuizBtn'
         disabled={
-          !props.form.newQuestion.length ||
-          !props.form.newTrueAnswer.length ||
-          !props.form.newFalseAnswer.length
+          props.form.newQuestion.length <= 1 ||
+          props.form.newTrueAnswer.length <= 1 ||
+          props.form.newFalseAnswer.length <= 1
         }
       >
         Submit new quiz
